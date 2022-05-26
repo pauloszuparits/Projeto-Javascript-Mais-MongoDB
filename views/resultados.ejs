@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <header>
+        <div>
+            <button class="botao-cabecalho">Calculos</button>
+            <button class="botao-cabecalho">Motivação</button>
+            <button class="botao-cabecalho">Esporte Ideal</button>
+            <button class="botao-cabecalho">Quiz</button>
+        </div>
+        <div>
+            <button class="botao-cabecalho">Login</button>
+            <button class="botao-cabecalho">Cadastro</button>
+        </div>
+    </header>
+    <main>
+        <h1>Veja abaixo seus resultados</h1>
+        <section class="resultados">
+            <form action="/salvarcalc" method="post">
+                <label for="tmb">TMB</label>
+                <input type="text" value="<%= tmb %>" name="tmb" readonly>
+                <label for="agua">Agua</label>
+                <input type="text" value="<%= agua %>" name="agua" readonly>
+                <label for="carbo">Carboidrato</label>
+                <input type="text" value="<%= carbo %>" name="carbo" readonly>
+                <label for="proteina">Proteina</label>
+                <input type="text" value="<%= prot %>" name="prot" readonly>
+                <label for="gordura">Gordura</label>
+                <input type="text" value="<%= gord %>" name="gord" readonly>
+                <div class="btn-submit"><button type="submit" >Salvar Resultados em meu perfil</button></div>
+            </form>
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>

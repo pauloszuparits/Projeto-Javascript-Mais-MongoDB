@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuário</title>
+    
+</head>
+<body>
+    <header>
+        <div>
+            <a href="/calculos"><button class="botao-cabecalho">Calcule suas necessidades</button></a>
+            <button class="botao-cabecalho">Motivação</button>
+            <a href="/quizEsporte"><button class="botao-cabecalho">Esporte Ideal</button></a>
+        </div>
+        <div>
+            <a href="/login"><button class="botao-cabecalho">Login</button></a>
+            <a href="/cadastro"><button class="botao-cabecalho">Cadastro</button></a>
+        </div>
+    </header>
+    <main>
+        <h1>Bem vindo ao seu perfil!</h1>
+        <section class="login">
+            <form action="/user/change" method="POST">
+                
+                    <label for="nome">Nome</label>
+                    <input type="text" value="<%= nome %>" name="name">
+                
+                    <label for="email">Email</label>
+                    <input type="text" value="<%= email %>" readonly name="email">
+                
+           
+                <div class= "btn-submit" ><button type="submit"> Salvar Alterações</button></div>
+            </form>
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+
+    <style>
+        /* Fonts */
+            @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+            /* Geral */
+            *{
+                margin: 0;
+                padding: 0;
+            }
+
+            h1{
+                font-weight: 400;
+                font-size: 1.5em;
+                text-align: center;
+            }
+
+            /* body */
+
+            body{
+                font-family: 'Roboto', 'sans-serif';
+            }
+
+
+            /* Cabeçalho */
+            header{
+                display: flex;
+                justify-content: space-between;
+                margin: 0;
+                margin-bottom: 20px;
+                padding: 10px;
+                padding-bottom: 25px;
+                background-color: #153B7F;
+                height: 10px;
+            }
+
+            .botao-cabecalho{
+                padding: 4px;
+                border-radius: 6px;
+                background-color: #2B77FF;
+                color: white;
+                transition: all 0.2s;
+            }
+            .botao-cabecalho:hover{
+                background-color: #72758F;
+                
+                transform: scale(1.1);
+            }
+
+
+
+            /* Main */
+
+            .botoes-main{
+                display: flex;
+                flex-direction: column;
+                width: 85%;
+                justify-content: center;
+                margin: auto;
+            }
+
+            .botoes-main button{
+                margin-bottom: 10px;
+                border-radius: 5px;
+                border: solid black 1px;
+                height: 110px;
+                transition: all 0.2s;
+            }
+
+            .botoes-main button:hover{
+                transform: scale(1.1);
+            }
+
+            /* Section */
+
+            section{
+                border: solid 1px black;
+                width: 85%;
+                margin: auto;
+                margin-top: 15px;
+                border-radius: 8px;
+                padding: 12px;
+                
+            }
+
+            section form{
+                display: flex;
+                flex-direction: column;
+                align-items: center;}
+
+
+            /* Login */
+
+            .login input{
+                width: 50%;
+                padding: 2px;
+                padding-left: 8px;
+                margin-left: 10px;
+                border-radius: 5px;
+                height: 20px;
+                border: solid 1px black;
+            }
+
+            /* Login + cadastro */
+            .btn-submit button{
+                margin-top: 10px;
+                margin-left: 10px;
+                padding: 8px;
+                border-radius: 6px;
+                background-color: #2B77FF;
+                color: white;
+                transition: all 0.2s;
+            }
+
+            .btn-submit button:hover{
+                background-color: #72758F;
+                transform: scale(1.1);
+            }
+
+            
+    </style>
+</body>
+</html>

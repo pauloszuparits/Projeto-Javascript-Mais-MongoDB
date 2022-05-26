@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculos</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <header>
+        <div>
+            <button class="botao-cabecalho">Calculos</button>
+            <button class="botao-cabecalho">Motivação</button>
+            <button class="botao-cabecalho">Esporte Ideal</button>
+            <button class="botao-cabecalho">Quiz</button>
+        </div>
+        <div>
+            <button class="botao-cabecalho">Login</button>
+            <button class="botao-cabecalho">Cadastro</button>
+        </div>
+    </header>
+    <main>
+        <h1>Calcule sua dieta, Taxa Metabólica Basal, e quantidade de ingestão de água</h1>
+        <section>
+            <form action="/resultado" method="post">
+                <div class="entradas">
+                    <div>
+                        <span>Sexo:</span>
+                        <label for="sexo">Feminino</label>
+                        <input type="radio" value="Feminino" name="sexo">
+                        <label for="sexo">Masculino</label>
+                        <input type="radio" value="Masculino" name="sexo">
+                    </div>
+                    <div class="ipt-pai">
+                        <label for="altura">Altura:</label>
+                        <input type="number" name="altura">
+                    </div>
+                    <div class="ipt-pai">
+                        <label for="peso">Peso:&nbsp </label>
+                        <input type="number" name="peso">
+                    </div>
+                    <div class="ipt-pai">
+                        <label for="idade">Idade: </label>
+                        <input type="number" name="idade">
+                    </div>
+                    <div>
+                        <label for="atividade">Nivel de atividade: </label>
+                        <select name="atividade" id="atividade" name="atividade">
+                            <option value="Sedentario">Sedentario</option>
+                            <option value="Levemente_Ativo">Levemente Ativo</option>
+                            <option value="Moderadamente_Ativo">Moderadamente Ativo</option>
+                            <option value="Altamente_Ativo">Altamente Ativo</option>
+                            <option value="Extremamente_Ativo">Extremamente Ativo</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button class="btn-calcular" onclick= "calcular()">Calcular!</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+
+</body>
+</html>
