@@ -69,10 +69,23 @@ app.get("/user/:id", checkToken, async(req, res)=>{
         return res.status(404).json({msg: "Usuário nao encontrado"}); //TODO
     }
 
+    //checar se usuario tem infos guardadas
+    const calculo = await Calculos.findOne({email:user.email});
+    if(calculo){
+        
+        res.render('usuario2.ejs', { nome: user.name,
+                                    tmb: calculo.tmb,
+                                    agua: calculo.agua,
+                                    carboidrato: calculo.carbo,
+                                    proteina: calculo.prot,
+                                    gordura: calculo.gord,
+                                    email: calculo.email});
+    }else{
+        res.render('usuario.ejs', {nome: user.name,
+                                   email: user.email});
+    }
     
-    
-    res.render('usuario.ejs', {nome: user.name,
-                               email: user.email}); //TODO
+     //TODO
     
     // module.exports = user;
 });
@@ -299,7 +312,14 @@ app.post('/salvarcalc', async (req, res) => {
     }else{
         const calculo = await Calculos.findOne({email:email});
         if(calculo){
-            //se ja tiver algo salvo
+            await Calculos.updateOne({email: email}, {
+                tmb: tmb,
+                agua: agua,
+                carboidrato: carbo,
+                proteina: prot,
+                gordura: gord,
+                email: email
+            })
         }else{
             const calculo = new Calculos({
                 tmb: tmb,
