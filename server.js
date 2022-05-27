@@ -76,9 +76,9 @@ app.get("/user/:id", checkToken, async(req, res)=>{
         res.render('usuario2.ejs', { nome: user.name,
                                     tmb: calculo.tmb,
                                     agua: calculo.agua,
-                                    carboidrato: calculo.carbo,
-                                    proteina: calculo.prot,
-                                    gordura: calculo.gord,
+                                    carboidrato: calculo.carboidrato,
+                                    proteina: calculo.proteina,
+                                    gordura: calculo.gordura,
                                     email: calculo.email});
     }else{
         res.render('usuario.ejs', {nome: user.name,
