@@ -248,7 +248,7 @@ function checkToken(req, res, next){
 //Register User
 app.post('/auth/cadastro',async(req, res)=>{
     
-    const {name, email, password, confirmpassword} = req.body; //TODO
+    const {name, email, password, confirmpassword} = req.body; 
     
 
     //validations
@@ -289,8 +289,15 @@ app.post('/auth/cadastro',async(req, res)=>{
 
         await user.save();
 
+        href1 = '/login';
+        href2 = '/cadastro';
+        title1 = 'Login';
+        title2 = 'Cadastre-se';
         
-        res.send('<h1>Usuário Criado com sucesso</h1>' + '<a href="/login">Fazer login</a>'); //TODO
+        res.render('cadastroSucess.ejs', {href_user_login: href1,
+            href_cadastro_logoff: href2,
+            user_login: title1, 
+            cadastro_logoff: title2})
     }catch(err){
         console.log(err)
         
