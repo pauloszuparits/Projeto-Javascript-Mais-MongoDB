@@ -33,121 +33,249 @@
 
     <style>
         /* Fonts */
-            @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
-            /* Geral */
-            *{
-                margin: 0;
-                padding: 0;
-            }
-
-            h1{
-                font-weight: 400;
-                font-size: 1.5em;
-                text-align: center;
-            }
-
-            /* body */
-
-            body{
-                font-family: 'Roboto', 'sans-serif';
-            }
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 
-            /* Cabeçalho */
-            header{
-                display: flex;
-                justify-content: space-between;
-                margin: 0;
-                margin-bottom: 20px;
-                padding: 10px;
-                padding-bottom: 25px;
-                background-color: #153B7F;
-                height: 10px;
-            }
+        /* colors
+            484F51
+            F5A44E
+            EE6F00 */
 
-            .botao-cabecalho{
-                padding: 4px;
-                border-radius: 6px;
-                background-color: #2B77FF;
-                color: white;
-                transition: all 0.2s;
-            }
-            .botao-cabecalho:hover{
-                background-color: #72758F;
-                
-                transform: scale(1.1);
-            }
+        /* Geral */
+        *{
+            margin: 0;
+            padding: 0;
+        }
 
+        h1{
+            font-weight: 400;
+            font-size: 1.5em;
+            text-align: center;
+            
+        }
+
+        h2{
+            text-align: center;
+            font-weight: 400;
+            font-size: 1.5em;
+        }
 
 
-            /* Main */
+        /* body */
 
-            .botoes-main{
-                display: flex;
-                flex-direction: column;
-                width: 85%;
-                justify-content: center;
-                margin: auto;
-            }
-
-            .botoes-main button{
-                margin-bottom: 10px;
-                border-radius: 5px;
-                border: solid black 1px;
-                height: 110px;
-                transition: all 0.2s;
-            }
-
-            .botoes-main button:hover{
-                transform: scale(1.1);
-            }
-
-            /* Section */
-
-            section{
-                border: solid 1px black;
-                width: 85%;
-                margin: auto;
-                margin-top: 15px;
-                border-radius: 8px;
-                padding: 12px;
-                
-            }
-
-            section form{
-                display: flex;
-                flex-direction: column;
-                align-items: center;}
+        body{
+            font-family: 'Roboto', 'sans-serif';
+        }
 
 
-            /* Login */
+        /* Cabeçalho */
+        header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0;
+            margin-bottom: 30px;
+            padding: 10px;
+            padding-bottom: 25px;
+            background-color: #d87722;
+            height: 45px;
+        }
 
-            .login input{
-                width: 50%;
-                padding: 2px;
-                padding-left: 8px;
-                margin-left: 10px;
-                border-radius: 5px;
-                height: 20px;
-                border: solid 1px black;
-            }
+        .botao-cabecalho{
+            padding: 8px;
+            margin-right: 8px;
+            border: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            border-radius: 8px;
+            background-color: #d87722;
+            color: #484F51;
+            transition: all 0.2s;
+        }
+        .botao-cabecalho:hover{
+            background-color: #302f2f1a;
+            
+            transform: scale(1.1);
+        }
 
-            /* Login + cadastro */
-            .btn-submit button{
-                margin-top: 10px;
-                margin-left: 10px;
-                padding: 8px;
-                border-radius: 6px;
-                background-color: #2B77FF;
-                color: white;
-                transition: all 0.2s;
-            }
 
-            .btn-submit button:hover{
-                background-color: #72758F;
-                transform: scale(1.1);
-            }
+
+        /* Main */
+
+        .botoes-main{
+            display: flex;
+            flex-direction: column;
+            width: 85%;
+            justify-content: center;
+            margin: auto;
+        }
+
+        .botoes-main button{
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: solid black 1px;
+            height: 110px;
+            transition: all 0.2s;
+        }
+
+        .botoes-main button:hover{
+            transform: scale(1.1);
+        }
+
+        /* Section */
+
+        section{
+            
+            border: solid 1px black;
+            width: 65%;
+            margin: auto;
+            margin-top: 35px;
+            border-radius: 8px;
+            padding: 30px;
+            background-color: #F5A44E;
+        }
+
+        section form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+
+
+        /* Calculos */
+        .entradas div{
+            padding: 10px;
+            background-color: white;
+            margin: 5px;
+            border: solid 1px black;
+            border-radius: 10px;  
+        }
+
+        .entradas div:last-child{
+            border: none;
+            display: flex;
+            justify-content: center;
+            background-color: #F5A44E;
+            margin-bottom: 0;
+        }
+
+        .sexo input, span{
+            margin-right: 10px;
+        }
+        .ipt-pai input{
+            
+            width: 75%;
+            margin-left: 10px;
+            border-radius: 5px;
+            height: 20px;
+            border: solid 1px black;
+        }
+
+        .btn-calcular{
+            
+            margin-top: 10px;
+            margin-left: 10px;
+            padding: 8px;
+            border-radius: 6px;
+            background-color: #484F51;
+            color: white;
+            transition: all 0.2s;
+            
+        }
+
+        .btn-calcular:hover{
+            background-color: #72758F;
+            transform: scale(1.1);
+        }
+
+        /* Esporte Ideal */
+
+        .esporte-ideal-sec div{
+            width: 50%;
+            margin-bottom: 10px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            
+            border: solid 1px black;
+            border-radius: 5px;
+        }
+
+        .esporte-ideal-sec div:last-child{
+            border: none;
+        }
+
+        .esporte-ideal-sec select{
+            margin-top: 5px;
+            border-radius: 5px;
+            padding: 3px;
+        }
+
+        .imagem-esporte{
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .imagem-esporte img{
+            width: 50%;
+            display: flex;
+            align-self: center;
+            margin: auto;
+            border-radius: 5px;
+            box-shadow: 2px 2px 2px rgb(146, 146, 146);
+        }
+
+        /* Login */
+
+        .login input{
+            width: 50%;
+            padding: 2px;
+            padding-left: 8px;
+            margin-left: 10px;
+            border-radius: 5px;
+            height: 20px;
+            border: solid 1px black;
+            margin-bottom: 10px;
+        }
+
+        .login label{
+            margin-bottom: 2px;
+        }
+
+        /* Login + cadastro */
+        .btn-submit button{
+            margin-top: 20px;
+            margin-left: 10px;
+            padding: 8px;
+            border-radius: 6px;
+            background-color: #484F51;
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn-submit button:hover{
+            background-color: #72758F;
+            transform: scale(1.1);
+        }
+
+
+        /* resultados */
+
+        .resultados form input{
+            margin-bottom: 10px;
+            text-align: center;
+            padding: 4px;
+            border: solid 1px rgb(161, 161, 161);
+            border-radius: 8px;
+        }
+
+        .resultados label{
+            margin-bottom: 2px;
+        }
+
+        /* {"_id":{"$oid":"628fc9dff79c8ac8cd242d83"},"tmb":{"$numberInt":"3581"},"agua":{"$numberInt":"3150"},"carboidrato":{"$numberInt":"358"},"email":"pauloszuparits@hotmail.com","__v":{"$numberInt":"0"}} */
 
             
     </style>
