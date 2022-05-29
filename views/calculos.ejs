@@ -8,18 +8,7 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <header>
-        <div>
-            <button class="botao-cabecalho">Calculos</button>
-            <button class="botao-cabecalho">Motivação</button>
-            <button class="botao-cabecalho">Esporte Ideal</button>
-            <button class="botao-cabecalho">Quiz</button>
-        </div>
-        <div>
-            <button class="botao-cabecalho">Login</button>
-            <button class="botao-cabecalho">Cadastro</button>
-        </div>
-    </header>
+    <%- include('../parts/page-header', {href_user_login: href_user_login, href_cadastro_logoff: href_cadastro_logoff, user_login: user_login, cadastro_logoff: cadastro_logoff}) %>
     <main>
         <h1>Calcule sua dieta, Taxa Metabólica Basal, e quantidade de ingestão de água</h1>
         <section>

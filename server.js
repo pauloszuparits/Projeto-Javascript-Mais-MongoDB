@@ -31,53 +31,167 @@ app.use(express.json());
 //home
 app.get('/', (req, res) => {
     //render da view
-    res.render('index.ejs'); 
+    let href1, href2, title1, title2;
+    let id = localStorage.getItem('id');
+    if(id == undefined){
+        //deslogado
+        href1 = '/login';
+        href2 = '/cadastro';
+        title1 = 'Login';
+        title2 = 'Cadastre-se';
+    }else{
+        //logado
+        href1 = '/user/' + id;
+        href2 = '/logoff';
+        title1 = 'Meu perfil';
+        title2 = 'Logoff';
+    }
+    //render da view
+    res.render('index.ejs', {href_user_login: href1,
+                                href_cadastro_logoff: href2,
+                                user_login: title1, 
+                                cadastro_logoff: title2}); 
 });
 
 //login
 app.get('/login', (req, res) => {
-    //render da view
-    res.render('login.ejs'); 
+    let id = localStorage.getItem('id');
+    let href1 = '/login';
+    let href2 = '/cadastro';
+    let title1 = 'Login';
+    let title2 = 'Cadastre-se';
+    if(id == undefined){
+        res.render('login.ejs',{href_user_login: href1,
+            href_cadastro_logoff: href2,
+            user_login: title1, 
+            cadastro_logoff: title2}); 
+    }else{
+        res.redirect('/user/'+id);
+    }
 });
 
 //cadastro
 app.get('/cadastro', (req, res) => {
+    let href1, href2, title1, title2;
+    let id = localStorage.getItem('id');
+    if(id == undefined){
+        //deslogado
+        href1 = '/login';
+        href2 = '/cadastro';
+        title1 = 'Login';
+        title2 = 'Cadastre-se';
+    }else{
+        //logado
+        href1 = '/user/' + id;
+        href2 = '/logoff';
+        title1 = 'Meu perfil';
+        title2 = 'Logoff';
+    }
     //render da view
-    res.render('cadastro.ejs'); 
+    res.render('cadastro.ejs', {href_user_login: href1,
+                                href_cadastro_logoff: href2,
+                                user_login: title1, 
+                                cadastro_logoff: title2}); 
 });
 
 //calculos
 app.get('/calculos', (req, res) => {
+    let href1, href2, title1, title2;
+    let id = localStorage.getItem('id');
+    if(id == undefined){
+        //deslogado
+        href1 = '/login';
+        href2 = '/cadastro';
+        title1 = 'Login';
+        title2 = 'Cadastre-se';
+    }else{
+        //logado
+        href1 = '/user/' + id;
+        href2 = '/logoff';
+        title1 = 'Meu perfil';
+        title2 = 'Logoff';
+    }
     //render da view
-    res.render('calculos.ejs'); 
+    res.render('calculos.ejs', {href_user_login: href1,
+                                href_cadastro_logoff: href2,
+                                user_login: title1, 
+                                cadastro_logoff: title2}); 
+    
 });
 
 //esporte Ideal
 app.get('/quizEsporte', (req, res) => {
+    let href1, href2, title1, title2;
+    let id = localStorage.getItem('id');
+    if(id == undefined){
+        //deslogado
+        href1 = '/login';
+        href2 = '/cadastro';
+        title1 = 'Login';
+        title2 = 'Cadastre-se';
+    }else{
+        //logado
+        href1 = '/user/' + id;
+        href2 = '/logoff';
+        title1 = 'Meu perfil';
+        title2 = 'Logoff';
+    }
     //render da view
-    res.render('esporteideal.ejs'); 
+    res.render('esporteideal.ejs', {href_user_login: href1,
+                                    href_cadastro_logoff: href2,
+                                    user_login: title1, 
+                                    cadastro_logoff: title2}); 
+    
 });
 
 //motivacao
 app.get('/motivacao', (req, res)=>{
+    let href1, href2, title1, title2;
     let src = "";
     let width = "1";
     let height = "1";
-    res.render('motivacao.ejs', {src: src,
-                                 width:width,
-                                 height: height});
+    let id = localStorage.getItem('id');
+    if(id == undefined){
+        //deslogado
+        href1 = '/login';
+        href2 = '/cadastro';
+        title1 = 'Login';
+        title2 = 'Cadastre-se';
+    }else{
+        //logado
+        href1 = '/user/' + id;
+        href2 = '/logoff';
+        title1 = 'Meu perfil';
+        title2 = 'Logoff';
+    }
+    //render da view
+    res.render('motivacao.ejs', {href_user_login: href1,
+                            href_cadastro_logoff: href2,
+                            user_login: title1, 
+                            cadastro_logoff: title2,
+                            src: src,
+                            width:width,
+                            height: height}); 
 })
 
 //Private Route
 app.get("/user/:id", checkToken, async(req, res)=>{
 
+    
+
     const id = req.params.id;
+
+    let href1 = '/user/' + id;
+    let href2 = '/logoff';
+    let title1 = 'Meu perfil';
+    let title2 = 'Logoff';
     
     //check if user exists
     const user = await User.findById(id, '-password');
 
     if(!user){
-        return res.status(404).json({msg: "Usuário nao encontrado"}); //TODO
+
+        return res.send("<script>alert('Usuário não encontrado'); window.location.href = '/login'; </script>");
     }
 
     //checar se usuario tem infos guardadas
@@ -90,14 +204,22 @@ app.get("/user/:id", checkToken, async(req, res)=>{
                                     carboidrato: calculo.carboidrato,
                                     proteina: calculo.proteina,
                                     gordura: calculo.gordura,
-                                    email: calculo.email});
+                                    email: calculo.email,
+                                    href_user_login: href1,
+                                    href_cadastro_logoff: href2,
+                                    user_login: title1, 
+                                    cadastro_logoff: title2});
     }else{
         res.render('usuario.ejs', {nome: user.name,
-                                   email: user.email});
+                                   email: user.email,
+                                   href_user_login: href1,
+                                   href_cadastro_logoff: href2,
+                                   user_login: title1, 
+                                   cadastro_logoff: title2});
     }
     
-     //TODO
-    
+     
+
     // module.exports = user;
 });
 
@@ -110,7 +232,7 @@ function checkToken(req, res, next){
     const token = authHeader && authHeader.split(" ")[1];
 
     if(!token){
-        return res.status(401).json({msg: 'Acesso negado'}) //TODO
+        return res.send("<script>alert('Usuário não encontrado'); window.location.href = '/login'; </script>");
     }
 
     try{
@@ -118,8 +240,8 @@ function checkToken(req, res, next){
         jwt.verify(token, secret)
 
         next()
-    }catch(error){
-        res.status(400).json({msg: "Token Invalido"}) //TODO
+    }catch(err){
+        console.log(err);
     }
 }
 
@@ -131,17 +253,17 @@ app.post('/auth/cadastro',async(req, res)=>{
 
     //validations
     if(!name){
-        return res.status(422).json({msg: "O nome é obrigatório!"}); //TODO
+        return res.send("<script>alert('Nome obrigatório'); window.location.href = '/cadastro'; </script>");
     }
     if(!email){
-        return res.status(422).json({msg: "O email é obrigatório!"}); //TODO
+        return res.send("<script>alert('Email obrigatório'); window.location.href = '/cadastro'; </script>");
     }
     if(!password){
-        return res.status(422).json({msg: "A senha é obrigatória!"}); //TODO
+        return res.send("<script>alert('Senha obrigatória'); window.location.href = '/cadastro'; </script>");
     }
 
     if(password !== confirmpassword){ 
-        return res.status(422).json({msg: "As senhas não conferem!"}); //TODO
+        return res.send("<script>alert('Senhas não conferem'); window.location.href = '/cadastro'; </script>");
     }
 
     //check if user exists
@@ -149,7 +271,7 @@ app.post('/auth/cadastro',async(req, res)=>{
     const userExists = await User.findOne({email:email})
 
     if(userExists){
-        return res.status(422).json({msg: "Utilize outro email"}) //TODO
+        return res.send("<script>alert('Utilize outro email, este ja está em uso'); window.location.href = '/cadastro'; </script>");
     }
 
     //create password
@@ -167,10 +289,10 @@ app.post('/auth/cadastro',async(req, res)=>{
 
         await user.save();
 
-        // res.status(201).json({msg: "usuario criado com sucesso"});
+        
         res.send('<h1>Usuário Criado com sucesso</h1>' + '<a href="/login">Fazer login</a>'); //TODO
-    }catch(error){
-        res.status(500).json({msg: error}); //TODO
+    }catch(err){
+        console.log(err)
         
     }
 
@@ -180,28 +302,28 @@ app.post('/auth/cadastro',async(req, res)=>{
 
 //login User
 app.post("/auth/login", async (req, res) => {
-    const {email, password} = req.body; //TODO
+    const {email, password} = req.body; 
 
     //validation
     if(!email){
-        return res.status(422).json({msg: "O email é obrigatório!"}); //TODO
+        return res.send("<script>alert('Email Obrigatório'); window.location.href = '/login'; </script>") 
     }
     if(!password){
-        return res.status(422).json({msg: "A senha é obrigatória!"}); //TODO
+        return res.send("<script>alert('Senha Obrigatória'); window.location.href = '/login'; </script>");
     }
 
     //check if user exists
     const user = await User.findOne({email:email})
 
     if(!user){
-        return res.status(404).json({msg: "Usuário não encontrado"}) //TODO
+        return res.send("<script>alert('Usuário não encontrado'); window.location.href = '/login'; </script>");
     }
 
     //check if password match
     const checkPassword = await bcrypt.compare(password, user.password);
 
     if(!checkPassword){
-        return res.status(422).json({msg: "Senha inválida"}) //TODO
+        return res.send("<script>alert('Senha incorreta, tente novamente'); window.location.href = '/login'; </script>");
     }
 
     try{
@@ -213,26 +335,22 @@ app.post("/auth/login", async (req, res) => {
             },
             secret,
         )
-
-         
-        
-        // try{const tok = token;
-        // console.log(user._id + " ----------- " + tok);}catch(err){console.log(err)}
         
         
         try{
             localStorage.setItem('token', "Bearer " + token);
             localStorage.setItem('email', user.email);
+            localStorage.setItem('id', user._id);
         }catch(err){
             console.log(err);
         }
         
-        // res.status(200).json({msg: "Autenticação realizada com sucesso"});
+        
 
-        res.redirect('/user/' + user._id); //TODO
+        res.redirect('/user/' + user._id); 
         
     }catch(err){
-        res.status(500).json({msg: err}); //TODO
+        console.log(err);
     }
 })
 
@@ -241,7 +359,8 @@ app.get('/logoff', (req, res)=>{
     
     localStorage.removeItem('token');
     localStorage.removeItem('email');
-    res.redirect('/'); //TODO
+    localStorage.removeItem('id');
+    res.redirect('/'); 
 })
 
 
@@ -253,9 +372,7 @@ app.post('/user/change', async (req, res)=>{
         const user = await User.findOne({email:email});
         res.redirect('/user/' + user._id); //TODO
     }catch(err){
-        console.log("---------------------------------------------------" + err);
-        res.send('<h1>FAILED</h1>' + 
-             '<a href="/login"> Voltar para login</a>'); //TODO
+        console.log(err);
     }
     
 });
@@ -263,7 +380,11 @@ app.post('/user/change', async (req, res)=>{
 
 //Calculos
 app.post('/resultado', (req, res)=>{
+    
+    
     const{sexo, altura, peso, idade, atividade} = req.body;
+    
+    
     // Masculino 184 90 21 Altamente_Ativo
     let fator;
     let tmb, carbo, prot, gord;
@@ -303,13 +424,35 @@ app.post('/resultado', (req, res)=>{
     let agua = peso*35;
 
     
+    let href1, href2, title1, title2;
+    let id = localStorage.getItem('id');
+    if(id == undefined){
+        //deslogado
+        href1 = '/login';
+        href2 = '/cadastro';
+        title1 = 'Login';
+        title2 = 'Cadastre-se';
+    }else{
+        //logado
+        href1 = '/user/' + id;
+        href2 = '/logoff';
+        title1 = 'Meu perfil';
+        title2 = 'Logoff';
+    }
+    //render da view
+     
     res.render('resultados.ejs', {
         tmb: tmb.toFixed(0),
         agua: agua.toFixed(0),
         carbo: carbo.toFixed(0),
         prot: prot.toFixed(0),
-        gord: gord.toFixed(0)
+        gord: gord.toFixed(0),
+        href_user_login: href1,
+        href_cadastro_logoff: href2,
+        user_login: title1, 
+        cadastro_logoff: title2
     })
+    
     // console.log(sexo + " " + altura + " " + peso + " " + idade+ " " + atividade);
 })
 
@@ -322,6 +465,7 @@ app.post('/salvarcalc', async (req, res) => {
     if(email == undefined){
         res.send("<script>alert('precisa estar logado'); window.location.href = '/login'; </script>");
     }else{
+        const id = localStorage.getItem('id');
         const calculo = await Calculos.findOne({email:email});
         if(calculo){
             await Calculos.updateOne({email: email}, {
@@ -344,7 +488,7 @@ app.post('/salvarcalc', async (req, res) => {
 
             try{
                 await calculo.save();
-                res.redirect('/');
+                res.redirect('/user/' + id);
             }catch(err){
                 console.log("ERRO--->" + err);
             }
@@ -471,8 +615,30 @@ app.post('/resultadoesporteideal', (req, res)=>{
         }
     }
 
-    res.render('respostaEsporte.ejs', {esporte: esporte,
-                                        imgesporte:imgEsporte});
+    let href1, href2, title1, title2;
+    let id = localStorage.getItem('id');
+    if(id == undefined){
+        //deslogado
+        href1 = '/login';
+        href2 = '/cadastro';
+        title1 = 'Login';
+        title2 = 'Cadastre-se';
+    }else{
+        //logado
+        href1 = '/user/' + id;
+        href2 = '/logoff';
+        title1 = 'Meu perfil';
+        title2 = 'Logoff';
+    }
+    //render da view
+    res.render('respostaEsporte.ejs', {href_user_login: href1,
+                                    href_cadastro_logoff: href2,
+                                    user_login: title1, 
+                                    cadastro_logoff: title2,
+                                    esporte: esporte,
+                                    imgesporte:imgEsporte}); 
+
+    
 });
 
 app.post('/resultadomotivacao', (req, res)=>{
@@ -505,11 +671,31 @@ app.post('/resultadomotivacao', (req, res)=>{
             src = Motivacao.motivacaoVida[Math.floor(Math.random()*2)];
             break;
     }
-     
-    res.render("motivacao.ejs", {src: src,
-                                width:560,
-                                height: 315})
 
+    let href1, href2, title1, title2;
+    let id = localStorage.getItem('id');
+    if(id == undefined){
+        //deslogado
+        href1 = '/login';
+        href2 = '/cadastro';
+        title1 = 'Login';
+        title2 = 'Cadastre-se';
+    }else{
+        //logado
+        href1 = '/user/' + id;
+        href2 = '/logoff';
+        title1 = 'Meu perfil';
+        title2 = 'Logoff';
+    }
+    //render da view
+    res.render('motivacao.ejs', {href_user_login: href1,
+                                    href_cadastro_logoff: href2,
+                                    user_login: title1, 
+                                    cadastro_logoff: title2,
+                                    src: src,
+                                    width:560,
+                                    height: 315}); 
+     
 })
 
 //Credencials

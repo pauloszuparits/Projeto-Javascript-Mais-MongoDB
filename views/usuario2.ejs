@@ -8,17 +8,7 @@
     
 </head>
 <body>
-    <header>
-        <div>
-            <a href="/calculos"><button class="botao-cabecalho">Calcule suas necessidades</button></a>
-            <button class="botao-cabecalho">Motivação</button>
-            <a href="/quizEsporte"><button class="botao-cabecalho">Esporte Ideal</button></a>
-        </div>
-        <div>
-            <a href="/login"><button class="botao-cabecalho">Login</button></a>
-            <a href="/cadastro"><button class="botao-cabecalho">Cadastro</button></a>
-        </div>
-    </header>
+    <%- include('../parts/page-header', {href_user_login: href_user_login, href_cadastro_logoff: href_cadastro_logoff, user_login: user_login, cadastro_logoff: cadastro_logoff}) %>
     <main>
         <h1>Bem vindo ao seu perfil!</h1>
         <section class="login">
