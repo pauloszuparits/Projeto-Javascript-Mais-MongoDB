@@ -445,6 +445,17 @@ app.post('/resultadoesporteideal', (req, res)=>{
                             imgEsporte = "./img/rafting.jpg";
                         }
                     }
+                }else{
+                    if(escolha2 == "Desestressar"){
+                        if(escolha3 == "fechado"){
+                            if(escolha4 == "individual"){
+                                if(escolha5 == "sim"){
+                                    esporte = "Boxe";
+                                    imgEsporte = "./img/boxe.jpg";
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
