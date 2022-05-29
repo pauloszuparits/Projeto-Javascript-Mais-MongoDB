@@ -1,4 +1,3 @@
-
 require('dotenv').config()
 const express = require('express');
 const mongoose = require('mongoose');
@@ -21,6 +20,7 @@ app.set('view engine', 'ejs');
 //Models
 const User = require('./models/User'); 
 const Calculos = require('./models/Calculos'); 
+const Motivacao = require('./assets/arrays');
 const { config } = require('dotenv');
 
 //Config JSON response
@@ -57,6 +57,16 @@ app.get('/quizEsporte', (req, res) => {
     //render da view
     res.render('esporteideal.ejs'); 
 });
+
+//motivacao
+app.get('/motivacao', (req, res)=>{
+    let src = "";
+    let width = "1";
+    let height = "1";
+    res.render('motivacao.ejs', {src: src,
+                                 width:width,
+                                 height: height});
+})
 
 //Private Route
 app.get("/user/:id", checkToken, async(req, res)=>{
@@ -464,6 +474,43 @@ app.post('/resultadoesporteideal', (req, res)=>{
     res.render('respostaEsporte.ejs', {esporte: esporte,
                                         imgesporte:imgEsporte});
 });
+
+app.post('/resultadomotivacao', (req, res)=>{
+    const {tipoV} = req.body;
+    let src;
+    
+    switch(tipoV){
+        case "Perna":
+            src = Motivacao.motivacaoPerna[Math.floor(Math.random()*3)]
+            break;
+        case "Peito":
+            src = Motivacao.motivacaoPeito[Math.floor(Math.random()*3)];
+            break;
+        case "Costas":
+            src = Motivacao.motivacaoCostas[Math.floor(Math.random()*3)];
+            break;
+        case "Bracos":
+            src = Motivacao.motivacaoBracos[Math.floor(Math.random()*2)];
+            break;
+        case "Ombros":
+            src = Motivacao.motivacaoBracos[Math.floor(Math.random()*3)];
+            break;
+        case "Futebol":
+            src = Motivacao.motivacaoFutebol[Math.floor(Math.random()*1)];
+            break;
+        case "Basquete":
+            src = Motivacao.motivacaoBasquete[Math.floor(Math.random()*1)];
+            break;
+        case "Vida":
+            src = Motivacao.motivacaoVida[Math.floor(Math.random()*2)];
+            break;
+    }
+     
+    res.render("motivacao.ejs", {src: src,
+                                width:560,
+                                height: 315})
+
+})
 
 //Credencials
 const dbUser = process.env.DB_USER //TODO
