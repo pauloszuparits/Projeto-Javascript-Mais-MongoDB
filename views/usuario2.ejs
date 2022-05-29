@@ -33,12 +33,16 @@
            
                 <div class= "btn-submit" ><button type="submit"> Salvar Alterações</button></div>
             </form>
-            <h2>Seus dados</h2>
-            <span>TMB: <%= tmb %></span>
-            <span>Quantidade de água: <%= agua %></span>
-            <span>Carboidrato: <%= carboidrato %></span>
-            <span>Proteina: <%= proteina %></span>
-            <span>Gordura: <%= gordura %></span>
+            <h2 class="seus-dados">Seus dados</h2>
+            <section class="dados-profile">
+                <span>TMB: <%= tmb %></span>
+                <span>Quantidade de água: <%= agua %></span>
+                <span>Carboidrato: <%= carboidrato %></span>
+                <span>Proteina: <%= proteina %></span>
+                <span>Gordura: <%= gordura %></span>
+            </section>
+
+            <div class="logoff btn-submit"><a href="/logoff"><button >Logoff</button></a></div>
         </section>
         
     </main>
@@ -60,6 +64,12 @@
                 font-weight: 400;
                 font-size: 1.5em;
                 text-align: center;
+            }
+
+            h2{
+                text-align: center;
+                font-weight: 400;
+                font-size: 1.5em;
             }
 
             /* body */
@@ -164,7 +174,22 @@
                 transform: scale(1.1);
             }
 
-            
+            /* Usuario2 */
+            .seus-dados{
+                margin-top: 20px;
+            }
+
+            .dados-profile{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .logoff{
+                margin-top: 20px;
+                display: flex;
+                justify-content: center;
+            }
     </style>
 </body>
 </html>

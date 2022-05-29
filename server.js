@@ -13,6 +13,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 //static files
 app.use(express.static('public'));
 app.use('/css', express.static(__dirname + 'public/css'));
+app.use('/img', express.static(__dirname + 'public/img'));
 
 //View
 app.set('view engine', 'ejs');
@@ -307,8 +308,9 @@ app.post('/salvarcalc', async (req, res) => {
     const{tmb, agua, carbo, prot, gord} = req.body;
     
     let email = localStorage.getItem("email");
-    if(email == null){
-        res.send("<script>alert(" + "precisa estar logado" + "); window.location.href = " + "/resultado" + "; </script>");
+    
+    if(email == undefined){
+        res.send("<script>alert('precisa estar logado'); window.location.href = '/login'; </script>");
     }else{
         const calculo = await Calculos.findOne({email:email});
         if(calculo){
@@ -338,6 +340,118 @@ app.post('/salvarcalc', async (req, res) => {
             }
         }
     }
+});
+
+//calcular esporte ideal
+app.post('/resultadoesporteideal', (req, res)=>{
+    const{escolha1,escolha2,escolha3,escolha4,escolha5} = req.body;
+
+    let esporte = "Desculpe, não descobrimos qual seu esporte ideal";
+    let imgEsporte = "./img/not-found.gif";
+
+    if(escolha1 == "Intospectivo"){ //se introspectivo
+        if(escolha2=="diversão"){//se diversão
+            if(escolha3=="ar_livre" || escolha3=="relaxantes"){
+                if(escolha4=="individual"){
+                    if(escolha5=="sim" || escolha5=="não"){
+                        esporte = "Golf";
+                        imgEsporte = "./img/golf.jpg";
+                    }
+                }
+            }else{
+                if(escolha4=="individual"){
+                    if(escolha5=="não"){
+                        esporte = "Yoga"
+                        imgEsporte = "./img/yoga.jpg"
+                    }
+                }
+            }
+        }else{
+            if(escolha2=="Adrenalina"){
+                if(escolha3=="ar_livre"|| escolha3=="relaxantes"){
+                    if(escolha5 == "não"){
+                        esporte = "Montanhismo";
+                        imgEsporte = "./img/mountaineering.jpg";
+                    }
+                }
+            }else{
+                if(escolha2=="Desestressar"|| escolha2=="Explorar_limites"){
+                    if(escolha3=="ar_livre"){
+                        if(escolha4=="individual"){
+                            esporte="Natação";
+                            imgEsporte = "./img/swimming.jpg";
+                        }
+                    }else{
+                        if(escolha3=="fechado"){
+                            if(escolha4=="individual"){
+                                if(escolha5=="sim"){
+                                    esporte="LPO (Levantamento de peso olimpico)"
+                                    imgEsporte = "./img/lpo.jpg";
+                                }else{
+                                    esporte="Musculação"
+                                    imgEsporte = "./img/workout.jpg";
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+    }else{
+        if(escolha1 == "Extrovertido" || escolha1 == "sociavel"){
+            if(escolha2 == "diversão"){
+                if(escolha3 == "ar_livre"){
+                    if(escolha4 == "grupo"){
+                        if(escolha5 == "sim"){
+                            esporte = "Futebol";
+                            imgEsporte = "./img/Soccer.jpg";
+                        }
+                    }else{
+                        if(escolha5 == "sim"){
+                            esporte = "Tênis";
+                            imgEsporte = "./img/tennis.jpg";
+                        }
+                    }
+                }else{
+                    if(escolha3 == "fechado"){
+                        if(escolha4 == "grupo"){
+                            if(escolha5 == "sim"){
+                                esporte = "Basquete";
+                                imgEsporte = "./img/basketball.jpg";
+                            }
+                        }else{
+                            if(escolha5 == "sim"){
+                                esporte = "Badminton";
+                                imgEsporte = "./img/badminton.jpg";
+                            }
+                        }
+                    }
+                }
+            }else{
+                if(escolha2 == "Adrenalina"){
+                    if(escolha3 == "fechado"){
+                        if(escolha4 == "individual"){
+                            if(escolha5 == "não"){
+                                esporte = "Salto Ornamental";
+                                imgEsporte = "./img/salto_ornamental.jpg";
+                            }
+                        }
+                    }else{
+                        if(escolha5 == "não"){
+                            esporte = "Rafting";
+                            imgEsporte = "./img/rafting.jpg";
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    res.render('respostaEsporte.ejs', {esporte: esporte,
+                                        imgesporte:imgEsporte});
 });
 
 //Credencials

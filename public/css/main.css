@@ -13,6 +13,13 @@ h1{
     text-align: center;
 }
 
+h2{
+    text-align: center;
+    font-weight: 400;
+    font-size: 1.5em;
+}
+
+
 /* body */
 
 body{
@@ -141,10 +148,28 @@ section form{
     border-radius: 5px;
 }
 
+.esporte-ideal-sec div:last-child{
+    border: none;
+}
+
 .esporte-ideal-sec select{
     margin-top: 5px;
     border-radius: 5px;
     padding: 3px;
+}
+
+.imagem-esporte{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.imagem-esporte img{
+    width: 50%;
+    display: flex;
+    align-self: center;
+    margin: auto;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgb(146, 146, 146);
 }
 
 /* Login */
