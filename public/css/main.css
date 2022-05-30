@@ -30,6 +30,9 @@ h2{
     font-size: 1.5em;
 }
 
+iframe{
+    margin-top: 40px;
+}
 
 /* body */
 
@@ -162,19 +165,25 @@ section form{
 
 /* Esporte Ideal */
 
+.esporte{
+    display: flex;
+    justify-content: center;
+}
+
 .esporte-ideal-sec div{
     width: 50%;
     margin-bottom: 10px;
     padding: 12px;
     display: flex;
     flex-direction: column;
-    
+    background-color: white;
     border: solid 1px black;
     border-radius: 5px;
 }
 
 .esporte-ideal-sec div:last-child{
     border: none;
+    background-color: #F5A44E;
 }
 
 .esporte-ideal-sec select{
@@ -261,3 +270,53 @@ section form{
 #nao-delete{
     background-color: rgb(0, 192, 0);
 }
+
+/* Motivacional */
+
+.motivacional form{
+    display: flex;
+    flex-direction: column;
+}
+
+.motivacional select{
+    margin-top: 20px;
+    border-radius: 5px;
+    padding: 3px;
+}
+
+.video{
+    display: flex;
+    justify-content: center;
+}
+
+footer{
+    background-color: #d87722;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer div{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.link-footer{
+    padding: 5px;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+.link-footer a{
+    color: black;
+    
+}
+
+.link-footer:hover{
+    background-color: #72758F;
+    transform: scale(1.1);
+}
+

@@ -35,9 +35,7 @@
                 <div class="logoff btn-submit"><a href="/logoff"><button >Logoff</button></a></div>
         </section>
     </main>
-    <footer>
-
-    </footer>
+    <%- include('../parts/page-footer') %>
 
     <style>
         /* Fonts */
@@ -263,6 +261,37 @@
         .delete button:hover{
             background-color: red;
         }
+
+        footer{
+                background-color: #d87722;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            footer div{
+                margin-bottom: 10px;
+                margin-top: 10px;
+            }
+
+            .link-footer{
+                padding: 5px;
+                border-radius: 8px;
+                transition: all 0.2s;
+            }
+            .link-footer a{
+                color: black;
+                
+            }
+
+            .link-footer:hover{
+                background-color: #72758F;
+                transform: scale(1.1);
+            }
     </style>
 </body>
 </html>

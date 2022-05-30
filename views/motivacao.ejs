@@ -10,9 +10,10 @@
 <body>
     <%- include('../parts/page-header', {href_user_login: href_user_login, href_cadastro_logoff: href_cadastro_logoff, user_login: user_login, cadastro_logoff: cadastro_logoff}) %>
     <main>
-        <section>
+        <h1>Videos motivacionais</h1>
+        <section class="motivacional">
             <form action="/resultadomotivacao" method="post">
-                <label for="tipo-video">Você deseja um video de motivação para</label>
+                <label for="tipo-video">Você deseja um video de motivação para:</label>
                 <div>    
                     <select name="tipoV" id="tipoV">
                         <option value="Perna">Treino de Pernas</option>
@@ -25,15 +26,14 @@
                         <option value="Vida">Vida</option>
                     </select>
 
-                    <button type="submit">Gerar video de motivação!</button>
+                    
                 </div>
+                <div class="btn-submit"><button type="submit">Gerar video de motivação!</button></div>
             </form>
 
-            <iframe width="<%=width%>" height="<%=height%>" src="<%=src%>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="video"><iframe width="<%=width%>" height="<%=height%>" src="<%=src%>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
         </section>
     </main>
-    <footer>
-
-    </footer>
+    <%- include('../parts/page-footer') %>
 </body>
 </html>
