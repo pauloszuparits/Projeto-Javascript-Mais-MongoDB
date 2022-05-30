@@ -22,8 +22,14 @@
                 
            
                 <div class= "btn-submit" ><button type="submit"> Salvar Alterações</button></div>
-                <div class= " btn-submit delete" ><button > Deletar Conta</button></div>
+                
+
             </form>
+
+                <div class= " btn-submit delete" >
+                    <a href="/delete"><button>Deletar Conta</button></a>
+                </div>
+        
             <h2 class="seus-dados">Seus dados</h2>
             <section class="dados-profile">
                 <span><span class="title">TMB:</span> <%= tmb %></span>
@@ -235,6 +241,11 @@
             justify-content: center;
         }
 
+        .delete{
+            display: flex;
+            justify-content: center;
+        }
+
         .delete button{
             background-color: rgb(143, 1, 1);
         }
@@ -242,6 +253,8 @@
         .delete button:hover{
             background-color: red;
         }
+
+        
     </style>
 </body>
 </html>

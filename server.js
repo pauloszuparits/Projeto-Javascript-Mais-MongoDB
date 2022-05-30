@@ -119,6 +119,23 @@ app.get('/calculos', (req, res) => {
     
 });
 
+//deletar conta
+
+app.get('/delete', (req, res)=>{
+    let id = localStorage.getItem('id');
+
+    let href1 = '/user/' + id;
+    let href2 = '/logoff';
+    let title1 = 'Meu perfil';
+    let title2 = 'Logoff';
+
+    res.render('deletar.ejs', {href_user_login: href1,
+                                href_cadastro_logoff: href2,
+                                user_login: title1, 
+                                cadastro_logoff: title2,
+                                userid: id}); 
+})
+
 //esporte Ideal
 app.get('/quizEsporte', (req, res) => {
     let href1, href2, title1, title2;
@@ -225,10 +242,10 @@ app.get("/user/:id", checkToken, async(req, res)=>{
 
 function checkToken(req, res, next){
     
-    console.log("Local" + localStorage.getItem('token'));
+    
     
     const authHeader = localStorage.getItem('token');
-    console.log("VAR" + authHeader);
+    
     const token = authHeader && authHeader.split(" ")[1];
 
     if(!token){
@@ -384,6 +401,21 @@ app.post('/user/change', async (req, res)=>{
     
 });
 
+//Deletar conta
+app.get('/deleteuser', async (req, res)=>{
+    const id = localStorage.getItem('id');
+    const user = User.findOne(id);
+    try{
+        await User.deleteOne(user);
+        localStorage.removeItem('token');
+        localStorage.removeItem('email');
+        localStorage.removeItem('id');
+        res.send("<script>alert('Usuário removido com sucesso'); window.location.href = '/'; </script>");
+    }catch(err){
+        console.log(err);
+    }
+})
+
 
 //Calculos
 app.post('/resultado', (req, res)=>{
@@ -460,7 +492,7 @@ app.post('/resultado', (req, res)=>{
         cadastro_logoff: title2
     })
     
-    // console.log(sexo + " " + altura + " " + peso + " " + idade+ " " + atividade);
+    
 })
 
 //salvar calculos
@@ -497,7 +529,7 @@ app.post('/salvarcalc', async (req, res) => {
                 await calculo.save();
                 res.redirect('/user/' + id);
             }catch(err){
-                console.log("ERRO--->" + err);
+                console.log(err);
             }
         }
     }

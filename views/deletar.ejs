@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DELETAR CONTA!</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <%- include('../parts/page-header', {href_user_login: href_user_login, href_cadastro_logoff: href_cadastro_logoff, user_login: user_login, cadastro_logoff: cadastro_logoff}) %>
+    <main>
+        <section>
+            <h1>VOCÊ REALMENTE DESEJA DELETAR SUA CONTA?</h1>
+            <div class="btn-submit delete">
+                <a href="/deleteuser"><button>Sim, não quero mais minha conta!</button></a>
+                <a href="user/<%=userid%>"><button id="nao-delete">Não, voltar para meu perfil</button></a>
+            </div>
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>
