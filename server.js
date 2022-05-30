@@ -188,7 +188,8 @@ app.get('/motivacao', (req, res)=>{
                             cadastro_logoff: title2,
                             src: src,
                             width:width,
-                            height: height}); 
+                            height: height,
+                            display: "display: flex;"}); 
 })
 
 //Private Route
@@ -736,7 +737,8 @@ app.post('/resultadomotivacao', (req, res)=>{
                                     cadastro_logoff: title2,
                                     src: src,
                                     width:560,
-                                    height: 315}); 
+                                    height: 315,
+                                    display: "display: none;"}); 
      
 })
 
