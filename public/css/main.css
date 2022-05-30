@@ -290,8 +290,8 @@ section form{
 }
 
 footer{
-    background-color: #d87722;
-    position: absolute;
+    background-color: #af611d;
+    margin-top: 80px;   
     bottom: 0;
     left: 0;
     width: 100%;
@@ -320,3 +320,27 @@ footer div{
     transform: scale(1.1);
 }
 
+.botoes-main{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.botoes-main img{
+    margin-bottom: 10px;
+    border-radius: 10px;
+    transition: all 0.2s;
+}
+
+.botoes-main img:hover{
+    transform: scale(1.05);
+}
+
+.footer-small{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}

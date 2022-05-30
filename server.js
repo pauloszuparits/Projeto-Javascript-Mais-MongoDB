@@ -404,9 +404,12 @@ app.post('/user/change', async (req, res)=>{
 //Deletar conta
 app.get('/deleteuser', async (req, res)=>{
     const id = localStorage.getItem('id');
-    const user = User.findOne(id);
+    const user = await User.findOne(id);
+    const calc = await Calculos.findOne(user.email);
+
     try{
         await User.deleteOne(user);
+        await Calculos.deleteOne(calc);
         localStorage.removeItem('token');
         localStorage.removeItem('email');
         localStorage.removeItem('id');
